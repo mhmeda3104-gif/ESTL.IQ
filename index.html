@@ -6,48 +6,117 @@
     <title>ESTL.IQ | الأساسيات بجودة استثنائية</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #ffffff; }
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        /* تعريف خط TwinAngel المخصص */
+        @font-face {
+            font-family: 'TwinAngel';
+            /* تأكد أن اسم الملف يطابق الملف المرفوع على GitHub تماماً */
+            src: url('twinangel.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #050505; 
+            color: #ffffff; 
+            overflow-x: hidden;
+        }
+
+        /* تنسيق الـ Glassmorphism */
+        .glass { 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+        }
+
+        /* تطبيق الخط الخاص على كلمة البراند */
+        .brand-logo-main {
+            font-family: 'TwinAngel', sans-serif;
+            letter-spacing: -2px;
+        }
+
+        /* تأثير التدرج للنص (اختياري ليعطي لمسة احترافية) */
+        .text-gradient {
+            background: linear-gradient(to bottom, #ffffff 60%, #444444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     </style>
 </head>
 <body>
 
-    <nav class="fixed w-full z-50 glass py-4 px-6 flex justify-between items-center">
-        <div class="text-2xl font-bold tracking-tighter">ESTL<span class="text-gray-500">.IQ</span></div>
-        <div class="hidden md:flex gap-8 text-sm uppercase tracking-widest">
-            <a href="#" class="hover:text-gray-400">المتجر</a>
-            <a href="#" class="hover:text-gray-400">قصتنا</a>
-            <a href="#" class="hover:text-gray-400">تواصل معنا</a>
+    <nav class="fixed w-full z-50 glass py-5 px-8 flex justify-between items-center tracking-tighter">
+        <div class="text-xl font-bold tracking-widest">ESTL<span class="text-gray-600">.IQ</span></div>
+        <div class="hidden md:flex gap-10 text-xs uppercase tracking-[0.2em] font-light">
+            <a href="#" class="hover:text-gray-400 transition">Shop</a>
+            <a href="#" class="hover:text-gray-400 transition">Essentials</a>
+            <a href="#" class="hover:text-gray-400 transition">Contact</a>
         </div>
-        <button class="md:hidden text-white">☰</button>
+        <div class="text-sm">BAG (0)</div>
     </nav>
 
-    <section class="h-screen flex flex-col justify-center items-center text-center px-4">
-        <h1 class="text-6xl md:text-8xl font-bold mb-4 tracking-tighter italic">ESTL</h1>
-        <p class="text-gray-400 max-w-md text-lg">أزياء أساسية مصممة لتدوم. بعيداً عن الموضة السريعة، نركز على الجوهر.</p>
-        <button class="mt-8 px-10 py-3 bg-white text-black font-bold hover:bg-gray-200 transition">تسوق الآن</button>
+    <section class="relative h-screen flex flex-col justify-center items-center text-center px-6">
+        <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900 via-black to-black opacity-50"></div>
+
+        <h1 class="brand-logo-main text-8xl md:text-[12rem] mb-2 text-gradient">
+            ESTL
+        </h1>
+        
+        <p class="text-gray-500 max-w-sm text-sm md:text-base tracking-widest uppercase font-light mt-4">
+            The New Standard of Essentials
+        </p>
+        
+        <a href="#products" class="mt-12 px-12 py-4 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-gray-200 transition-all duration-300">
+            Explore Collection
+        </a>
     </section>
 
-    <section class="p-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="glass p-4 rounded-lg group">
-            <div class="h-80 bg-stone-900 mb-4 overflow-hidden">
-                <div class="w-full h-full flex items-center justify-center text-gray-700">Image Placeholder</div>
+    <section id="products" class="max-w-7xl mx-auto py-24 px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        
+        <div class="group cursor-pointer">
+            <div class="aspect-[3/4] bg-zinc-900 mb-6 relative overflow-hidden flex items-center justify-center text-zinc-800 text-xs uppercase tracking-widest border border-white/5">
+                Product Image
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span class="text-white border border-white px-6 py-2">Quick View</span>
+                </div>
             </div>
-            <h3 class="text-lg font-medium">Basic Oversized Tee</h3>
-            <p class="text-gray-500">25,000 IQD</p>
+            <div class="flex justify-between items-start italic">
+                <div>
+                    <h3 class="text-sm font-medium">ESTL Heavyweight Tee</h3>
+                    <p class="text-gray-500 text-xs mt-1">Black / Charcoal</p>
+                </div>
+                <span class="text-sm font-light">25,000 IQD</span>
+            </div>
         </div>
-        <div class="glass p-4 rounded-lg group">
-            <div class="h-80 bg-stone-900 mb-4 flex items-center justify-center text-gray-700">Image Placeholder</div>
-            <h3 class="text-lg font-medium">Essential Hoodie</h3>
-            <p class="text-gray-500">45,000 IQD</p>
+
+        <div class="group cursor-pointer">
+            <div class="aspect-[3/4] bg-zinc-900 mb-6 flex items-center justify-center text-zinc-800 text-xs border border-white/5">Product Image</div>
+            <div class="flex justify-between items-start italic">
+                <div>
+                    <h3 class="text-sm font-medium">Signature Hoodie</h3>
+                    <p class="text-gray-500 text-xs mt-1">Oversized Fit</p>
+                </div>
+                <span class="text-sm font-light">45,000 IQD</span>
+            </div>
         </div>
-        <div class="glass p-4 rounded-lg group">
-            <div class="h-80 bg-stone-900 mb-4 flex items-center justify-center text-gray-700">Image Placeholder</div>
-            <h3 class="text-lg font-medium">ESTL Sweatpants</h3>
-            <p class="text-gray-500">35,000 IQD</p>
+
+        <div class="group cursor-pointer">
+            <div class="aspect-[3/4] bg-zinc-900 mb-6 flex items-center justify-center text-zinc-800 text-xs border border-white/5">Product Image</div>
+            <div class="flex justify-between items-start italic">
+                <div>
+                    <h3 class="text-sm font-medium">Essential Sweatpants</h3>
+                    <p class="text-gray-500 text-xs mt-1">Comfort Tech</p>
+                </div>
+                <span class="text-sm font-light">35,000 IQD</span>
+            </div>
         </div>
+
     </section>
+
+    <footer class="py-10 border-t border-white/5 text-center text-[10px] text-gray-600 uppercase tracking-[0.3em]">
+        &copy; 2026 ESTL.IQ - All Rights Reserved
+    </footer>
 
 </body>
 </html>
