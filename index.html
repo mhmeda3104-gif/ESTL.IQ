@@ -3,40 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESTL.IQ | الأساسيات بجودة استثنائية</title>
+    <title>ESTL.IQ | Essentials</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    
     <style>
-        /* تعريف خط TwinAngel المخصص */
         @font-face {
             font-family: 'TwinAngel';
-            /* تأكد أن اسم الملف يطابق الملف المرفوع على GitHub تماماً */
             src: url('twinangel.ttf') format('truetype');
             font-display: swap;
         }
-
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #050505; 
-            color: #ffffff; 
-            overflow-x: hidden;
-        }
-
-        /* تنسيق الـ Glassmorphism */
-        .glass { 
-            background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(12px); 
-            border: 1px solid rgba(255, 255, 255, 0.08); 
-        }
-
-        /* تطبيق الخط الخاص على كلمة البراند */
-        .brand-logo-main {
-            font-family: 'TwinAngel', sans-serif;
-            letter-spacing: -2px;
-        }
-
-        /* تأثير التدرج للنص (اختياري ليعطي لمسة احترافية) */
+        body { font-family: sans-serif; background-color: #050505; color: #ffffff; margin: 0; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .brand-font { font-family: 'TwinAngel', sans-serif; }
         .text-gradient {
             background: linear-gradient(to bottom, #ffffff 60%, #444444);
             -webkit-background-clip: text;
@@ -44,78 +21,59 @@
         }
     </style>
 </head>
-<body>
+<body class="selection:bg-white selection:text-black">
 
-    <nav class="fixed w-full z-50 glass py-5 px-8 flex justify-between items-center tracking-tighter">
-        <div class="text-xl font-bold tracking-widest">ESTL<span class="text-gray-600">.IQ</span></div>
-        <div class="hidden md:flex gap-10 text-xs uppercase tracking-[0.2em] font-light">
-            <a href="#" class="hover:text-gray-400 transition">Shop</a>
-            <a href="#" class="hover:text-gray-400 transition">Essentials</a>
-            <a href="#" class="hover:text-gray-400 transition">Contact</a>
+    <nav class="fixed top-0 w-full z-50 glass py-5 px-8 flex justify-between items-center transition-all">
+        <div class="text-xl font-bold tracking-tighter">ESTL<span class="text-gray-600">.IQ</span></div>
+        <div class="hidden md:flex gap-10 text-[10px] uppercase tracking-[0.3em] font-light">
+            <a href="#products" class="hover:text-gray-400">Shop</a>
+            <a href="#" class="hover:text-gray-400">Archive</a>
+            <a href="#" class="hover:text-gray-400">Contact</a>
         </div>
-        <div class="text-sm">BAG (0)</div>
+        <div class="text-[10px] tracking-widest font-bold">BAG (0)</div>
     </nav>
 
-    <section class="relative h-screen flex flex-col justify-center items-center text-center px-6">
-        <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900 via-black to-black opacity-50"></div>
+    <div class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] glass rounded-2xl py-4 px-8 flex justify-around items-center text-[10px] uppercase tracking-[0.2em] border border-white/10 shadow-2xl">
+        <a href="#products" class="text-white">Shop</a>
+        <div class="w-[1px] h-3 bg-white/20"></div>
+        <a href="#" class="text-gray-400">Story</a>
+        <div class="w-[1px] h-3 bg-white/20"></div>
+        <a href="#" class="text-gray-400">Contact</a>
+    </div>
 
-        <h1 class="brand-logo-main text-8xl md:text-[12rem] mb-2 text-gradient">
-            ESTL
-        </h1>
-        
-        <p class="text-gray-500 max-w-sm text-sm md:text-base tracking-widest uppercase font-light mt-4">
-            The New Standard of Essentials
-        </p>
-        
-        <a href="#products" class="mt-12 px-12 py-4 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-gray-200 transition-all duration-300">
-            Explore Collection
-        </a>
+    <section class="h-screen flex flex-col justify-center items-center text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-800/20 via-black to-black -z-10"></div>
+        <h1 class="brand-font text-8xl md:text-[14rem] text-gradient leading-none">ESTL</h1>
+        <p class="text-gray-500 text-[10px] md:text-xs tracking-[0.5em] uppercase mt-6">Essential Pieces for Daily Life</p>
+        <a href="#products" class="mt-12 px-10 py-3 bg-white text-black text-[10px] font-bold uppercase tracking-widest hover:invert transition-all duration-500">Shop Collection</a>
     </section>
 
-    <section id="products" class="max-w-7xl mx-auto py-24 px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        
-        <div class="group cursor-pointer">
-            <div class="aspect-[3/4] bg-zinc-900 mb-6 relative overflow-hidden flex items-center justify-center text-zinc-800 text-xs uppercase tracking-widest border border-white/5">
-                Product Image
-                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span class="text-white border border-white px-6 py-2">Quick View</span>
-                </div>
-            </div>
-            <div class="flex justify-between items-start italic">
-                <div>
-                    <h3 class="text-sm font-medium">ESTL Heavyweight Tee</h3>
-                    <p class="text-gray-500 text-xs mt-1">Black / Charcoal</p>
-                </div>
-                <span class="text-sm font-light">25,000 IQD</span>
+    <section id="products" class="max-w-6xl mx-auto py-32 px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="group">
+            <div class="aspect-[3/4] bg-zinc-900 mb-6 flex items-center justify-center text-[10px] uppercase tracking-tighter text-zinc-700 border border-white/5 group-hover:border-white/20 transition-all">Loading Image...</div>
+            <div class="flex justify-between text-[11px] uppercase tracking-widest">
+                <span>Heavy Tee</span>
+                <span class="text-gray-500 font-light">25,000 IQD</span>
             </div>
         </div>
-
-        <div class="group cursor-pointer">
-            <div class="aspect-[3/4] bg-zinc-900 mb-6 flex items-center justify-center text-zinc-800 text-xs border border-white/5">Product Image</div>
-            <div class="flex justify-between items-start italic">
-                <div>
-                    <h3 class="text-sm font-medium">Signature Hoodie</h3>
-                    <p class="text-gray-500 text-xs mt-1">Oversized Fit</p>
-                </div>
-                <span class="text-sm font-light">45,000 IQD</span>
+        <div class="group">
+            <div class="aspect-[3/4] bg-zinc-900 mb-6 flex items-center justify-center text-[10px] uppercase text-zinc-700 border border-white/5 transition-all">Loading Image...</div>
+            <div class="flex justify-between text-[11px] uppercase tracking-widest">
+                <span>Signature Hoodie</span>
+                <span class="text-gray-500 font-light">45,000 IQD</span>
             </div>
         </div>
-
-        <div class="group cursor-pointer">
-            <div class="aspect-[3/4] bg-zinc-900 mb-6 flex items-center justify-center text-zinc-800 text-xs border border-white/5">Product Image</div>
-            <div class="flex justify-between items-start italic">
-                <div>
-                    <h3 class="text-sm font-medium">Essential Sweatpants</h3>
-                    <p class="text-gray-500 text-xs mt-1">Comfort Tech</p>
-                </div>
-                <span class="text-sm font-light">35,000 IQD</span>
+        <div class="group">
+            <div class="aspect-[3/4] bg-zinc-900 mb-6 flex items-center justify-center text-[10px] uppercase text-zinc-700 border border-white/5 transition-all">Loading Image...</div>
+            <div class="flex justify-between text-[11px] uppercase tracking-widest">
+                <span>Core Sweatpants</span>
+                <span class="text-gray-500 font-light">35,000 IQD</span>
             </div>
         </div>
-
     </section>
 
-    <footer class="py-10 border-t border-white/5 text-center text-[10px] text-gray-600 uppercase tracking-[0.3em]">
-        &copy; 2026 ESTL.IQ - All Rights Reserved
+    <footer class="py-20 text-center text-[9px] text-gray-700 tracking-[0.4em] uppercase">
+        ESTL.IQ &copy; 2026 Crafted for the Essentials
     </footer>
 
 </body>
