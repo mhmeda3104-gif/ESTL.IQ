@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESTL.IQ | الأساسيات بجودة استثنائية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #ffffff; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed w-full z-50 glass py-4 px-6 flex justify-between items-center">
+        <div class="text-2xl font-bold tracking-tighter">ESTL<span class="text-gray-500">.IQ</span></div>
+        <div class="hidden md:flex gap-8 text-sm uppercase tracking-widest">
+            <a href="#" class="hover:text-gray-400">المتجر</a>
+            <a href="#" class="hover:text-gray-400">قصتنا</a>
+            <a href="#" class="hover:text-gray-400">تواصل معنا</a>
+        </div>
+        <button class="md:hidden text-white">☰</button>
+    </nav>
+
+    <section class="h-screen flex flex-col justify-center items-center text-center px-4">
+        <h1 class="text-6xl md:text-8xl font-bold mb-4 tracking-tighter italic">ESTL</h1>
+        <p class="text-gray-400 max-w-md text-lg">أزياء أساسية مصممة لتدوم. بعيداً عن الموضة السريعة، نركز على الجوهر.</p>
+        <button class="mt-8 px-10 py-3 bg-white text-black font-bold hover:bg-gray-200 transition">تسوق الآن</button>
+    </section>
+
+    <section class="p-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass p-4 rounded-lg group">
+            <div class="h-80 bg-stone-900 mb-4 overflow-hidden">
+                <div class="w-full h-full flex items-center justify-center text-gray-700">Image Placeholder</div>
+            </div>
+            <h3 class="text-lg font-medium">Basic Oversized Tee</h3>
+            <p class="text-gray-500">25,000 IQD</p>
+        </div>
+        <div class="glass p-4 rounded-lg group">
+            <div class="h-80 bg-stone-900 mb-4 flex items-center justify-center text-gray-700">Image Placeholder</div>
+            <h3 class="text-lg font-medium">Essential Hoodie</h3>
+            <p class="text-gray-500">45,000 IQD</p>
+        </div>
+        <div class="glass p-4 rounded-lg group">
+            <div class="h-80 bg-stone-900 mb-4 flex items-center justify-center text-gray-700">Image Placeholder</div>
+            <h3 class="text-lg font-medium">ESTL Sweatpants</h3>
+            <p class="text-gray-500">35,000 IQD</p>
+        </div>
+    </section>
+
+</body>
+</html>
