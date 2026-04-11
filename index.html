@@ -3,127 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESTL.IQ | Essentials</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @font-face {
-            font-family: 'TwinAngel';
-            src: url('twinangel.ttf') format('truetype');
-            font-display: swap;
-        }
-        body { font-family: sans-serif; background-color: #050505; color: #ffffff; margin: 0; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .brand-font { font-family: 'TwinAngel', sans-serif; }
-        .text-gradient {
-            background: linear-gradient(to bottom, #ffffff 60%, #444444);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-    </style>
+    <title>خطوط الجامعات العراقية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="selection:bg-white selection:text-black">
-
-    <nav class="fixed top-0 w-full z-50 glass py-5 px-8 flex justify-between items-center transition-all">
-        <div class="text-xl font-bold tracking-tighter">ESTL<span class="text-gray-600">.IQ</span></div>
-        <div class="hidden md:flex gap-10 text-[10px] uppercase tracking-[0.3em] font-light">
-            <a href="#products" class="hover:text-gray-400">Shop</a>
-            <a href="#" class="hover:text-gray-400">Archive</a>
-            <a href="#" class="hover:text-gray-400">Contact</a>
-        </div>
-        <div class="text-[10px] tracking-widest font-bold">BAG (0)</div>
+<body>
+    <nav class="navbar">
+        <div class="logo">IQ-UniBus <i class="fas fa-bus"></i></div>
+        <ul class="nav-links">
+            <li><a href="#">الرئيسية</a></li>
+            <li><a href="#">البحث عن خط</a></li>
+            <li><a href="#" class="btn-register">تسجيل سائق</a></li>
+        </ul>
     </nav>
 
-    <div class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] glass rounded-2xl py-4 px-8 flex justify-around items-center text-[10px] uppercase tracking-[0.2em] border border-white/10 shadow-2xl">
-        <a href="#products" class="text-white">Shop</a>
-        <div class="w-[1px] h-3 bg-white/20"></div>
-        <a href="#" class="text-gray-400">Story</a>
-        <div class="w-[1px] h-3 bg-white/20"></div>
-        <a href="#" class="text-gray-400">Contact</a>
-    </div>
-
-    <section class="h-screen flex flex-col justify-center items-center text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-800/20 via-black to-black -z-10"></div>
-        <h1 class="brand-font text-8xl md:text-[14rem] text-gradient leading-none">ESTL</h1>
-        <p class="text-gray-500 text-[10px] md:text-xs tracking-[0.5em] uppercase mt-6">Essential Pieces for Daily Life</p>
-        <a href="#products" class="mt-12 px-10 py-3 bg-white text-black text-[10px] font-bold uppercase tracking-widest hover:invert transition-all duration-500">Shop Collection</a>
-    </section>
-
-    <section id="products" class="max-w-6xl mx-auto py-32 px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
-        <div class="group">
-            <div class="aspect-[3/4] bg-zinc-900 mb-6 flex items-center justify-center text-[10px] uppercase tracking-tighter text-zinc-700 border border-white/5 group-hover:border-white/20 transition-all">Loading Image...</div>
-            <div class="flex justify-between text-[11px] uppercase tracking-widest">
-                <span>Heavy Tee</span>
-                <span class="text-gray-500 font-light">25,000 IQD</span>
-            </div>
-        </div>
-        <div class="group">
-            <div class="aspect-[3/4] bg-zinc-900 mb-6 flex items-center justify-center text-[10px] uppercase text-zinc-700 border border-white/5 transition-all">Loading Image...</div>
-            <div class="flex justify-between text-[11px] uppercase tracking-widest">
-                <span>Signature Hoodie</span>
-                <span class="text-gray-500 font-light">45,000 IQD</span>
-            </div>
-        </div>
-        <div class="group">
-            <div class="aspect-[3/4] bg-zinc-900 mb-6 flex items-center justify-center text-[10px] uppercase text-zinc-700 border border-white/5 transition-all">Loading Image...</div>
-            <div class="flex justify-between text-[11px] uppercase tracking-widest">
-                <span>Core Sweatpants</span>
-                <span class="text-gray-500 font-light">35,000 IQD</span>
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>طريقك للجامعة صار أسهل</h1>
+            <p>أكبر دليل لخطوط النقل الجامعي في كافة المحافظات العراقية</p>
+            <div class="search-container">
+                <input type="text" placeholder="اكتب اسم الجامعة أو المنطقة...">
+                <button type="submit"><i class="fas fa-search"></i></button>
             </div>
         </div>
     </section>
 
-    <footer class="mt-20 border-t border-white/5 pt-20 pb-32 px-8 bg-black/50 tracking-tighter">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-right md:text-right">
-        
-        <div class="col-span-1 md:col-span-1">
-            <h2 class="brand-font text-4xl mb-4">ESTL</h2>
-            <p class="text-[10px] text-gray-500 uppercase tracking-widest leading-relaxed">
-                الأساسيات المعاد تعريفها. مصممة في العراق للعالم. نركز على الجودة قبل الكمية.
-            </p>
+    <section class="features">
+        <div class="feature-card">
+            <i class="fas fa-route"></i>
+            <h3>تغطية شاملة</h3>
+            <p>من زاخو للبصرة، نغطي أغلب الجامعات.</p>
         </div>
-
-        <div>
-            <h4 class="text-[11px] font-bold uppercase tracking-[0.2em] mb-6 text-white">المتجر</h4>
-            <ul class="text-[11px] text-gray-500 flex flex-col gap-4 uppercase tracking-widest">
-                <li><a href="#" class="hover:text-white transition">جميع المنتجات</a></li>
-                <li><a href="#" class="hover:text-white transition">الأكثر مبيعاً</a></li>
-                <li><a href="#" class="hover:text-white transition">Careers (الوظائف)</a></li>
-                <li><a href="#" class="hover:text-white transition">Our Story (قصتنا)</a></li>
-            </ul>
+        <div class="feature-card">
+            <i class="fas fa-shield-alt"></i>
+            <h3>أمان وموثوقية</h3>
+            <p>سائقين مسجلين بتقييمات حقيقية.</p>
         </div>
-
-        <div>
-            <h4 class="text-[11px] font-bold uppercase tracking-[0.2em] mb-6 text-white">الدعم</h4>
-            <ul class="text-[11px] text-gray-500 flex flex-col gap-4 uppercase tracking-widest">
-                <li><a href="#" class="hover:text-white transition">Shipping (الشحن)</a></li>
-                <li><a href="#" class="hover:text-white transition">Returns (الاسترجاع)</a></li>
-                <li><a href="#" class="hover:text-white transition">Size Guide (دليل القياسات)</a></li>
-                <li><a href="#" class="hover:text-white transition">FAQ (الأسئلة الشائعة)</a></li>
-            </ul>
-        </div>
-
-        <div>
-            <h4 class="text-[11px] font-bold uppercase tracking-[0.2em] mb-6 text-white">ابقَ على اطلاع</h4>
-            <p class="text-[10px] text-gray-500 mb-4 uppercase tracking-widest">اشترك لتصلك أحدث المجموعات والحصريات.</p>
-            <form class="flex gap-2">
-                <input type="email" placeholder="Email Address" class="glass bg-transparent border-white/10 px-4 py-2 text-[10px] w-full focus:outline-none focus:border-white/30 transition">
-                <button class="bg-white text-black px-4 py-2 text-[10px] font-bold uppercase hover:bg-gray-200 transition">Join</button>
-            </form>
-            <div class="flex gap-4 mt-8">
-                <a href="#" class="text-gray-500 hover:text-white text-xs">INSTAGRAM</a>
-                <a href="#" class="text-gray-500 hover:text-white text-xs">TIKTOK</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-[9px] text-gray-600 uppercase tracking-[0.3em]">© 2026 ESTL.IQ - ALL RIGHTS RESERVED</p>
-        <div class="flex gap-6 text-[9px] text-gray-600 uppercase tracking-[0.2em]">
-            <a href="#" class="hover:text-gray-400">Privacy Policy</a>
-            <a href="#" class="hover:text-gray-400">Terms of Service</a>
-        </div>
-    </div>
-</footer>
-
+    </section>
 </body>
 </html>
