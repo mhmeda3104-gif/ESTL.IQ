@@ -1,57 +1,383 @@
-<section class="uni-cards-container">
-    <h2 class="section-title">الجامعات المتوفرة الآن</h2>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IQ UniBus | ناقل الجامعات العراقية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <div class="cards-grid">
-        <div class="uni-card">
-            <div class="status available">متوفر الآن</div>
-            <div class="card-header">
-                <i class="fas fa-university"></i>
+    <style>
+        /* CSS مدمج - الستايل العصري */
+        :root {
+            --primary-dark: #1a1a2e; /* أزرق ليلي عميق */
+            --accent-glow: #00d2ff; /* أزرق سماوي مضيء */
+            --accent-warm: #ff9f43; /* برتقالي دافئ */
+            --text-main: #333;
+            --text-light: #fff;
+            --bg-light: #f4f7f6;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif; /* استخدام الخط الحديث */
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- الهيدر الزجاجي (Glassmorphism Header) --- */
+        header {
+            background: rgba(26, 26, 46, 0.95); /* خلفية داكنة شبه شفافة */
+            backdrop-filter: blur(10px); /* تأثير الضباب */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 5%;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-glow);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-glow);
+        }
+
+        .btn-cta {
+            background: var(--accent-warm);
+            color: white !important;
+            padding: 8px 18px;
+            border-radius: 50px; /* حواف دائرية بالكامل */
+            box-shadow: 0 4px 15px rgba(255, 159, 67, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .btn-cta:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- قسم الـ Hero الحديث --- */
+        .hero {
+            height: 75vh;
+            background: radial-gradient(circle at center, #242442 0%, #1a1a2e 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 0 5%;
+            margin-top: 70px; /* مكان الهيدر الفيكسد */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* إضافة نمط شبكي خلفي */
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: linear-gradient(rgba(0, 210, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 210, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: rotate(-15deg);
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #fff, var(--accent-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; /* نص متدرج اللون */
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .modern-search {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .modern-search input {
+            flex: 1;
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .modern-search input::placeholder { color: rgba(255,255,255,0.6); }
+
+        .modern-search button {
+            background: var(--accent-glow);
+            border: none;
+            color: var(--primary-dark);
+            padding: 10px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .modern-search button:hover { background: #fff; }
+
+        /* --- قسم الكرتات العصرية --- */
+        .universities-section {
+            padding: 80px 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 32px;
+            color: var(--primary-dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        /* خط تحتي عصري */
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 4px;
+            background: var(--accent-glow);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .modern-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: all 0.4s ease;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        /* حرك التأشير (Hover) */
+        .modern-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: rgba(0, 210, 255, 0.2);
+        }
+
+        /* تأثير لامع عند الهوفر */
+        .modern-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            transition: 0.5s;
+        }
+
+        .modern-card:hover::before {
+            left: 100%;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #d4edda;
+            color: #155724;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .card-badge.busy { background: #fff3cd; color: #856404; }
+
+        .card-icon {
+            font-size: 40px;
+            color: var(--accent-glow);
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .modern-card h3 {
+            font-size: 20px;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        .card-info p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-info i { color: #888; width: 16px; text-align: center; }
+
+        .card-action {
+            width: 100%;
+            background: var(--primary-dark);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .card-action:hover {
+            background: var(--accent-warm);
+        }
+
+        /* استعلامات الوسائط للهواتف */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 32px; }
+            .nav-links { display: none; } /* إخفاء القائمة في الموبايل لتبسيط الكود */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#" class="logo">IQ-UniBus <i class="fas fa-bus-alt"></i></a>
+            <ul class="nav-links">
+                <li><a href="#">الرئيسية</a></li>
+                <li><a href="#">الخطوط المتاحة</a></li>
+                <li><a href="#">الشكاوى</a></li>
+                <li><a href="#" class="btn-cta">سجل كصاحب خط <i class="fas fa-plus-circle"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>خطوط الجامعات العراقية</h1>
+            <p>منظومتك الذكية والآمنة للوصول إلى جامعتك دون عناء.</p>
+            <div class="modern-search">
+                <input type="text" placeholder="اكتب اسم الجامعة أو منطقتك...">
+                <button type="submit">بحث سريع <i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <section class="universities-section">
+        <div class="section-header">
+            <h2>الجامعات المتوفرة</h2>
+        </div>
+
+        <div class="cards-grid">
+            <article class="modern-card">
+                <span class="card-badge">متوفر الآن <i class="fas fa-check-circle"></i></span>
+                <div class="card-icon"><i class="fas fa-university"></i></div>
                 <h3>جامعة المستقبل</h3>
-            </div>
-            <div class="card-body">
-                <p><i class="fas fa-map-marker-alt"></i> الموقع: بابل - طريق حلة نجف</p>
-                <p><i class="fas fa-bus"></i> عدد الخطوط: 12 خط</p>
-            </div>
-            <button class="view-details">عرض الخطوط</button>
-        </div>
+                <div class="card-info">
+                    <p><i class="fas fa-map-marker-alt"></i> بابل - طريق حلة نجف</p>
+                    <p><i class="fas fa-route"></i> تغطية: الحلة، النجف، الكفل</p>
+                    <p><i class="fas fa-bus"></i> 15 خط نشط</p>
+                </div>
+                <button class="card-action">استكشف الخطوط <i class="fas fa-arrow-left"></i></button>
+            </article>
 
-        <div class="uni-card">
-            <div class="status available">متوفر الآن</div>
-            <div class="card-header">
-                <i class="fas fa-university"></i>
+            <article class="modern-card">
+                <span class="card-badge busy">مزدحم جزئياً <i class="fas fa-exclamation-circle"></i></span>
+                <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
                 <h3>جامعة بغداد</h3>
-            </div>
-            <div class="card-body">
-                <p><i class="fas fa-map-marker-alt"></i> الموقع: بغداد - الجادرية</p>
-                <p><i class="fas fa-bus"></i> عدد الخطوط: 45 خط</p>
-            </div>
-            <button class="view-details">عرض الخطوط</button>
-        </div>
+                <div class="card-info">
+                    <p><i class="fas fa-map-marker-alt"></i> بغداد - الجادرية</p>
+                    <p><i class="fas fa-route"></i> تغطية: أغلب مناطق بغداد</p>
+                    <p><i class="fas fa-bus"></i> 50+ خط نشط</p>
+                </div>
+                <button class="card-action">استكشف الخطوط <i class="fas fa-arrow-left"></i></button>
+            </article>
 
-        <div class="uni-card">
-            <div class="status busy">مزدحم</div>
-            <div class="card-header">
-                <i class="fas fa-university"></i>
+            <article class="modern-card">
+                <span class="card-badge">متوفر الآن <i class="fas fa-check-circle"></i></span>
+                <div class="card-icon"><i class="fas fa-landmark"></i></div>
                 <h3>الجامعة التكنولوجية</h3>
-            </div>
-            <div class="card-body">
-                <p><i class="fas fa-map-marker-alt"></i> الموقع: بغداد - شارع الصناعة</p>
-                <p><i class="fas fa-bus"></i> عدد الخطوط: 8 خطوط</p>
-            </div>
-            <button class="view-details">عرض الخطوط</button>
+                <div class="card-info">
+                    <p><i class="fas fa-map-marker-alt"></i> بغداد - شارع الصناعة</p>
+                    <p><i class="fas fa-route"></i> تغطية: الرصافة والكرخ</p>
+                    <p><i class="fas fa-bus"></i> 20 خط نشط</p>
+                </div>
+                <button class="card-action">استكشف الخطوط <i class="fas fa-arrow-left"></i></button>
+            </article>
         </div>
+    </section>
 
-        <div class="uni-card">
-            <div class="status available">متوفر الآن</div>
-            <div class="card-header">
-                <i class="fas fa-university"></i>
-                <h3>جامعة بابل</h3>
-            </div>
-            <div class="card-body">
-                <p><i class="fas fa-map-marker-alt"></i> الموقع: بابل - مرجان</p>
-                <p><i class="fas fa-bus"></i> عدد الخطوط: 22 خط</p>
-            </div>
-            <button class="view-details">عرض الخطوط</button>
-        </div>
-    </div>
-</section>
+</body>
+</html>
