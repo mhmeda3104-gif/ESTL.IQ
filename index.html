@@ -1,44 +1,57 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خطوط الجامعات العراقية</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <nav class="navbar">
-        <div class="logo">IQ-UniBus <i class="fas fa-bus"></i></div>
-        <ul class="nav-links">
-            <li><a href="#">الرئيسية</a></li>
-            <li><a href="#">البحث عن خط</a></li>
-            <li><a href="#" class="btn-register">تسجيل سائق</a></li>
-        </ul>
-    </nav>
-
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1>طريقك للجامعة صار أسهل</h1>
-            <p>أكبر دليل لخطوط النقل الجامعي في كافة المحافظات العراقية</p>
-            <div class="search-container">
-                <input type="text" placeholder="اكتب اسم الجامعة أو المنطقة...">
-                <button type="submit"><i class="fas fa-search"></i></button>
+<section class="uni-cards-container">
+    <h2 class="section-title">الجامعات المتوفرة الآن</h2>
+    
+    <div class="cards-grid">
+        <div class="uni-card">
+            <div class="status available">متوفر الآن</div>
+            <div class="card-header">
+                <i class="fas fa-university"></i>
+                <h3>جامعة المستقبل</h3>
             </div>
+            <div class="card-body">
+                <p><i class="fas fa-map-marker-alt"></i> الموقع: بابل - طريق حلة نجف</p>
+                <p><i class="fas fa-bus"></i> عدد الخطوط: 12 خط</p>
+            </div>
+            <button class="view-details">عرض الخطوط</button>
         </div>
-    </section>
 
-    <section class="features">
-        <div class="feature-card">
-            <i class="fas fa-route"></i>
-            <h3>تغطية شاملة</h3>
-            <p>من زاخو للبصرة، نغطي أغلب الجامعات.</p>
+        <div class="uni-card">
+            <div class="status available">متوفر الآن</div>
+            <div class="card-header">
+                <i class="fas fa-university"></i>
+                <h3>جامعة بغداد</h3>
+            </div>
+            <div class="card-body">
+                <p><i class="fas fa-map-marker-alt"></i> الموقع: بغداد - الجادرية</p>
+                <p><i class="fas fa-bus"></i> عدد الخطوط: 45 خط</p>
+            </div>
+            <button class="view-details">عرض الخطوط</button>
         </div>
-        <div class="feature-card">
-            <i class="fas fa-shield-alt"></i>
-            <h3>أمان وموثوقية</h3>
-            <p>سائقين مسجلين بتقييمات حقيقية.</p>
+
+        <div class="uni-card">
+            <div class="status busy">مزدحم</div>
+            <div class="card-header">
+                <i class="fas fa-university"></i>
+                <h3>الجامعة التكنولوجية</h3>
+            </div>
+            <div class="card-body">
+                <p><i class="fas fa-map-marker-alt"></i> الموقع: بغداد - شارع الصناعة</p>
+                <p><i class="fas fa-bus"></i> عدد الخطوط: 8 خطوط</p>
+            </div>
+            <button class="view-details">عرض الخطوط</button>
         </div>
-    </section>
-</body>
-</html>
+
+        <div class="uni-card">
+            <div class="status available">متوفر الآن</div>
+            <div class="card-header">
+                <i class="fas fa-university"></i>
+                <h3>جامعة بابل</h3>
+            </div>
+            <div class="card-body">
+                <p><i class="fas fa-map-marker-alt"></i> الموقع: بابل - مرجان</p>
+                <p><i class="fas fa-bus"></i> عدد الخطوط: 22 خط</p>
+            </div>
+            <button class="view-details">عرض الخطوط</button>
+        </div>
+    </div>
+</section>
