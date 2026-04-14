@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام الطابور الزكي - Glassmorphism Edition</title>
+    <title>نظام الطابور الذكي - الإصدار الاحترافي</title>
     <style>
         :root {
             --bg-gradient: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
-            --glass-bg: rgba(255, 255, 255, 0.25);
-            --glass-border: rgba(255, 255, 255, 0.18);
+            --glass-bg: rgba(255, 255, 255, 0.2);
+            --glass-border: rgba(255, 255, 255, 0.2);
             --text-color: #1d1d1d;
             --primary-btn: #4facfe;
-            --accent-gold: #f1c40f;
+            --accent-gold: #f39c12;
+            --danger: #e74c3c;
         }
 
         [data-theme="dark"] {
             --bg-gradient: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-            --glass-bg: rgba(0, 0, 0, 0.4);
+            --glass-bg: rgba(0, 0, 0, 0.5);
             --glass-border: rgba(255, 255, 255, 0.1);
             --text-color: #ffffff;
             --primary-btn: #00f2fe;
@@ -28,52 +29,35 @@
             background-attachment: fixed;
             min-height: 100vh;
             margin: 0;
+            padding: 20px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             color: var(--text-color);
             transition: all 0.5s ease;
         }
 
-        .container {
-            width: 90%;
-            max-width: 500px;
-            padding: 20px;
-        }
+        .container { width: 100%; max-width: 650px; }
 
-        /* ستايل الزجاج الرئيسي */
         .glass-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border-radius: 20px;
             border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            padding: 20px;
             margin-bottom: 20px;
-            transition: transform 0.3s ease;
         }
 
-        header h1 {
-            text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .theme-switch {
-            text-align: left;
-            margin-bottom: 15px;
-        }
-
+        .theme-switch { text-align: left; margin-bottom: 10px; }
         .btn-toggle {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             color: var(--text-color);
-            padding: 8px 16px;
+            padding: 8px 15px;
             border-radius: 50px;
             cursor: pointer;
-            backdrop-filter: blur(5px);
         }
 
         input, select {
@@ -87,8 +71,6 @@
             box-sizing: border-box;
         }
 
-        input::placeholder { color: var(--text-color); opacity: 0.7; }
-
         .btn-main {
             width: 100%;
             padding: 15px;
@@ -97,102 +79,84 @@
             border-radius: 12px;
             color: white;
             font-weight: bold;
-            font-size: 1.1rem;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: 0.3s;
         }
 
-        .btn-main:hover { transform: scale(1.02); filter: brightness(1.1); }
+        .display-screen { text-align: center; border: 2px solid var(--primary-btn); }
+        .current-number { font-size: 4rem; font-weight: 900; color: var(--accent-gold); margin: 10px 0; }
 
-        .display-screen {
-            text-align: center;
-            background: rgba(0, 0, 0, 0.2);
+        /* ستايل قائمة المنتظرين */
+        .queue-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
         }
 
-        .current-number {
-            font-size: 4.5rem;
-            font-weight: 900;
-            color: var(--accent-gold);
-            margin: 10px 0;
-            text-shadow: 0 0 20px rgba(241, 196, 15, 0.4);
-        }
+        .queue-table th { text-align: right; padding: 10px; border-bottom: 1px solid var(--glass-border); opacity: 0.7; }
+        .queue-table td { padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
 
-        .stats {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .admin-zone {
-            margin-top: 30px;
-            border: 1px dashed var(--glass-border);
-            padding: 15px;
-            border-radius: 15px;
-            text-align: center;
-        }
-
-        .btn-admin {
-            background: var(--warning, #e67e22);
-            color: white;
+        .action-btn {
+            padding: 5px 10px;
+            border-radius: 6px;
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
             cursor: pointer;
+            font-size: 0.8rem;
+            margin-left: 5px;
         }
+        .btn-cancel { background: var(--danger); color: white; }
+        .btn-call-small { background: var(--accent-gold); color: white; }
 
-        /* انيميشن للدخول */
-        .fade-in { animation: fadeIn 0.8s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .empty-msg { text-align: center; opacity: 0.6; padding: 20px; }
     </style>
 </head>
 <body>
 
-<div class="container fade-in">
+<div class="container">
     <div class="theme-switch">
         <button class="btn-toggle" onclick="toggleTheme()" id="themeBtn">🌙 الوضع الليلي</button>
     </div>
 
-    <header>
-        <h1>🏛️ نظام "نهاية الطوابير"</h1>
-        <p style="text-align: center; opacity: 0.8;">كلية التقنية الهندسية - جامعة المستقبل</p>
+    <header style="text-align: center; margin-bottom: 20px;">
+        <h1>🎓 نظام "نهاية الطوابير"</h1>
+        <p>جامعة المستقبل - كلية التقنية الهندسية</p>
     </header>
 
-    <div class="stats">
-        <div class="glass-card" style="padding: 10px 20px; margin: 0; flex: 0.48;">
-            <span>المنتظرون: </span><strong id="qCount">0</strong>
-        </div>
-        <div class="glass-card" style="padding: 10px 20px; margin: 0; flex: 0.48;">
-            <span>الوقت: </span><strong id="qTime">--</strong>
-        </div>
-    </div>
-
     <section class="glass-card">
-        <h3 style="margin-top: 0;">🎟️ احجز دورك</h3>
-        <input type="text" id="nameInput" placeholder="اسم الطالب">
-        <select id="serviceSelect">
-            <option value="A">شؤون الطلبة (A)</option>
-            <option value="B">الحسابات (B)</option>
-        </select>
+        <h3 style="margin-top: 0;">🎟️ حجز دور جديد</h3>
+        <div style="display: flex; gap: 10px;">
+            <input type="text" id="nameInput" placeholder="اسم الطالب الثلاثي">
+            <select id="serviceSelect" style="width: 150px;">
+                <option value="A">شؤون (A)</option>
+                <option value="B">حسابات (B)</option>
+            </select>
+        </div>
         <button class="btn-main" onclick="addTicket()">تأكيد الحجز</button>
     </section>
 
     <section class="glass-card display-screen">
-        <p style="margin: 0; opacity: 0.9;">الرقم الحالي</p>
+        <p style="margin:0;">الرقم الحالي قيد الخدمة</p>
         <div class="current-number" id="nowServing">--</div>
-        <div id="studentNameDisplay" style="font-weight: bold;">في انتظار أول طالب...</div>
+        <div id="studentNameDisplay">بانتظار المراجعة...</div>
     </section>
 
-    <div id="myTicketInfo" class="glass-card" style="display: none; border: 2px solid var(--accent-gold); text-align: center;">
-        <p style="margin: 0;">رقم تذكرتك هو</p>
-        <h2 id="myTicketNum" style="margin: 5px 0; font-size: 2.5rem; color: var(--accent-gold);"></h2>
-    </div>
-
-    <div class="admin-zone">
-        <p style="font-size: 0.8rem; margin-bottom: 10px;">لوحة تحكم الموظف</p>
-        <button class="btn-admin" onclick="callNext()">استدعاء التالي 🔊</button>
-    </div>
+    <section class="glass-card">
+        <h3>📋 قائمة المنتظرين في الطابور</h3>
+        <div id="queueListContainer">
+            <table class="queue-table">
+                <thead>
+                    <tr>
+                        <th>الرقم</th>
+                        <th>الاسم</th>
+                        <th>العمليات</th>
+                    </tr>
+                </thead>
+                <tbody id="queueBody">
+                    </tbody>
+            </table>
+            <div id="emptyMsg" class="empty-msg">لا يوجد طلاب في الانتظار حالياً</div>
+        </div>
+    </section>
 </div>
 
 <script>
@@ -205,49 +169,79 @@
         const btn = document.getElementById('themeBtn');
         if (html.getAttribute('data-theme') === 'dark') {
             html.removeAttribute('data-theme');
-            btn.innerText = "🌙 Dark mode";
+            btn.innerText = "🌙 الوضع الليلي";
         } else {
             html.setAttribute('data-theme', 'dark');
-            btn.innerText = "☀️ Light mode";
+            btn.innerText = "☀️ الوضع النهاري";
         }
     }
 
     function addTicket() {
         const name = document.getElementById('nameInput').value;
         const type = document.getElementById('serviceSelect').value;
-        if (!name) return alert("يرجى إدخال اسمك");
+        if (!name.trim()) return alert("يرجى إدخال الاسم");
 
         counters[type]++;
         const tID = type + counters[type];
-        queue.push({ name, tID });
+        
+        const newStudent = { id: Date.now(), name, tID };
+        queue.push(newStudent);
 
-        document.getElementById('myTicketInfo').style.display = 'block';
-        document.getElementById('myTicketNum').innerText = tID;
         document.getElementById('nameInput').value = "";
-        updateStats();
+        renderQueue();
     }
 
-    function callNext() {
-        if (queue.length > 0) {
-            const current = queue.shift();
-            document.getElementById('nowServing').innerText = current.tID;
-            document.getElementById('studentNameDisplay').innerText = `جاري خدمة: ${current.name}`;
-            
-            // نطق باللغة العربية
-            const speak = new SpeechSynthesisUtterance(`الرقم ${current.tID} تفضل للمكتب`);
-            speak.lang = 'ar-SA';
-            synth.speak(speak);
+    function renderQueue() {
+        const tbody = document.getElementById('queueBody');
+        const emptyMsg = document.getElementById('emptyMsg');
+        tbody.innerHTML = "";
 
-            updateStats();
+        if (queue.length === 0) {
+            emptyMsg.style.display = "block";
         } else {
-            alert("لا يوجد أحد في الطابور");
+            emptyMsg.style.display = "none";
+            queue.forEach((student, index) => {
+                const row = `
+                    <tr>
+                        <td style="font-weight: bold; color: var(--accent-gold);">${student.tID}</td>
+                        <td>${student.name}</td>
+                        <td>
+                            <button class="action-btn btn-call-small" onclick="callSpecific(${index})">استدعاء</button>
+                            <button class="action-btn btn-cancel" onclick="removeTicket(${student.id})">إلغاء</button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
         }
     }
 
-    function updateStats() {
-        document.getElementById('qCount').innerText = queue.length;
-        document.getElementById('qTime').innerText = (queue.length * 5) + " د";
+    function removeTicket(id) {
+        if(confirm("هل تريد بالتأكيد إلغاء هذا الحجز؟")) {
+            queue = queue.filter(s => s.id !== id);
+            renderQueue();
+        }
     }
+
+    function callSpecific(index) {
+        const student = queue[index];
+        
+        // تحديث الشاشة الكبيرة
+        document.getElementById('nowServing').innerText = student.tID;
+        document.getElementById('studentNameDisplay').innerText = `جاري خدمة: ${student.name}`;
+        
+        // نطق الاسم والرقم
+        const speak = new SpeechSynthesisUtterance(`الرقم ${student.tID}، الطالب ${student.name}، تفضل للمكتب`);
+        speak.lang = 'ar-SA';
+        synth.speak(speak);
+
+        // إزالته من القائمة لأنه قيد الخدمة الآن
+        queue.splice(index, 1);
+        renderQueue();
+    }
+
+    // استدعاء أولي لتجهيز القائمة
+    renderQueue();
 </script>
 
 </body>
