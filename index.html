@@ -3,218 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام الطابور الذكي - جامعة المستقبل</title>
+    <title>نظام الطابور الذكي V2 - جامعة المستقبل</title>
     <style>
-        /* كود الستايل المدمج */
         :root {
-            --primary-color: #2c3e50;
-            --accent-color: #2980b9;
-            --bg-color: #f4f7f6;
-            --white: #ffffff;
+            --primary: #2c3e50;
+            --accent: #27ae60;
+            --warning: #e67e22;
+            --bg: #f8f9fa;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
+            background-color: var(--bg);
             margin: 0;
-            display: flex;
-            justify-content: center;
             padding: 20px;
             color: #333;
         }
 
         .container {
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-        }
-
-        header {
-            margin-bottom: 30px;
-        }
-
-        header h1 {
-            color: var(--primary-color);
-            margin-bottom: 5px;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .card {
-            background: var(--white);
-            padding: 25px;
+            background: white;
+            padding: 20px;
             border-radius: 15px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--primary);
         }
+
+        header { text-align: center; margin-bottom: 20px; }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        .stat-box span { display: block; font-size: 12px; color: #7f8c8d; }
+        .stat-box strong { font-size: 1.5rem; color: var(--primary); }
 
         input, select {
             width: 100%;
             padding: 12px;
             margin: 10px 0;
-            border: 1px solid #ddd;
+            border: 2px solid #eee;
             border-radius: 8px;
-            box-sizing: border-box; /* لضمان عدم خروج المدخلات عن الحواف */
             font-size: 16px;
+            transition: 0.3s;
         }
 
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 18px;
+        input:focus { border-color: var(--primary); outline: none; }
+
+        .btn {
             width: 100%;
-            transition: background 0.3s;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--accent-color);
-        }
-
-        .status-card {
-            display: flex;
-            justify-content: space-around;
-            background: #e8f4fd;
-            border: 1px solid #d0e7f9;
-        }
-
-        .status-box p {
-            margin: 0;
-            font-size: 14px;
-            color: #666;
-        }
-
-        .status-box h3 {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin: 10px 0;
-        }
-
-        .admin-panel {
-            margin-top: 40px;
-            padding: 20px;
-            border: 2px dashed #bdc3c7;
-            border-radius: 10px;
-        }
-
-        .btn-secondary {
-            background-color: #95a5a6;
-            color: white;
+            padding: 15px;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
             cursor: pointer;
+            transition: 0.3s;
         }
 
-        .btn-secondary:hover {
-            background-color: #7f8c8d;
+        .btn-join { background: var(--primary); color: white; }
+        .btn-join:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        .status-display {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            text-align: center;
+            padding: 30px;
         }
 
-        hr {
-            border: none;
-            border-top: 1px solid #ccc;
-            margin: 30px 0;
+        .current-num { font-size: 4rem; margin: 10px 0; color: #f1c40f; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+
+        .admin-section {
+            background: #fdf2e9;
+            border: 2px dashed var(--warning);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 40px;
         }
+
+        .btn-next { background: var(--warning); color: white; margin-top: 10px; }
+
+        /* حركة بسيطة عند التحديث */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .highlight { animation: pulse 0.5s ease-in-out; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>🎓 نظام نهاية الطوابير</h1>
-            <p>حل ذكي للازدحام في جامعة المستقبل</p>
-        </header>
+<div class="container">
+    <header>
+        <h1>🏛️ نظام "نهاية الطوابير"</h1>
+        <p>كلية التقنية الهندسية - جامعة المستقبل</p>
+    </header>
 
-        <section class="card">
-            <h2>حجز دور جديد</h2>
-            <input type="text" id="studentName" placeholder="أدخل اسمك الكامل">
-            <select id="serviceType">
-                <option value="شؤون الطلبة">قسم شؤون الطلبة</option>
-                <option value="الحسابات">قسم الحسابات</option>
-            </select>
-            <button onclick="joinQueue()" class="btn-primary">احصل على تذكرة الآن</button>
-        </section>
-
-        <section class="card status-card">
-            <div class="status-box">
-                <p>الرقم الحالي</p>
-                <h3 id="currentNumber">--</h3>
-            </div>
-            <div class="status-box">
-                <p>رقم تذكرتك</p>
-                <h3 id="yourNumber">--</h3>
-            </div>
-        </section>
-
-        <hr>
-
-        <section class="admin-panel">
-            <h3>لوحة تحكم الموظف (تجريبي)</h3>
-            <p style="font-size: 12px; color: #777;">هذا الجزء مخصص للموظف لاستدعاء الطالب التالي</p>
-            <button onclick="nextCustomer()" class="btn-secondary">استدعاء الرقم التالي 📢</button>
-        </section>
+    <div class="stats-grid">
+        <div class="stat-box">
+            <span>المنتظرون الآن</span>
+            <strong id="waitingCount">0</strong>
+        </div>
+        <div class="stat-box">
+            <span>متوسط الانتظار</span>
+            <strong id="avgTime">--</strong>
+        </div>
     </div>
 
-    <script>
-        // منطق البرمجة (JavaScript)
-        let queue = [];
-        let currentServingIndex = -1;
-        let ticketCounter = 100; // بداية الترقيم
+    <section class="card">
+        <h3>🎟️ حجز تذكرة إلكترونية</h3>
+        <input type="text" id="studentName" placeholder="أدخل اسمك الثلاثي">
+        <select id="serviceType">
+            <option value="A">شؤون الطلبة (A)</option>
+            <option value="B">الحسابات (B)</option>
+        </select>
+        <button onclick="joinQueue()" class="btn btn-join">احجز دورك الآن</button>
+    </section>
 
-        function joinQueue() {
-            const name = document.getElementById('studentName').value;
-            const service = document.getElementById('serviceType').value;
+    <section class="card status-display">
+        <p>الرقم الذي يتم خدمته الآن</p>
+        <div id="currentNumber" class="current-num">--</div>
+        <p id="serviceIndicator">يرجى الانتظار...</p>
+    </section>
 
-            if (name.trim() === "") {
-                alert("يرجى كتابة اسمك أولاً");
-                return;
-            }
+    <div id="userTicketBox" class="card" style="display:none; border-top-color: var(--accent);">
+        <p>رقم تذكرتك الخاص هو:</p>
+        <h2 id="userTicket" style="color: var(--accent); font-size: 2.5rem; margin: 0;"></h2>
+        <p style="font-size: 13px;">سنقوم بتنبيهك عند اقتراب دورك!</p>
+    </div>
 
-            ticketCounter++;
-            const newEntry = {
-                name: name,
-                ticket: ticketCounter,
-                service: service
-            };
+    <div class="admin-section">
+        <h3>🛠️ لوحة تحكم الموظف</h3>
+        <button onclick="nextCustomer()" class="btn btn-next">استدعاء الرقم التالي (صوتي) 🔊</button>
+    </div>
+</div>
 
-            queue.push(newEntry);
-            document.getElementById('yourNumber').innerText = ticketCounter;
+<script>
+    let queue = [];
+    let counters = { A: 100, B: 200 };
+    
+    // لإضافة تأثير التنبيه الصوتي
+    const synth = window.speechSynthesis;
 
-            // إذا كان الطابور فارغاً تماماً قبل هذا الحجز
-            if (currentServingIndex === -1) {
-                currentServingIndex = 0;
-                updateDisplay();
-            }
+    function joinQueue() {
+        const name = document.getElementById('studentName').value;
+        const type = document.getElementById('serviceType').value;
 
-            alert(`مرحباً ${name}، تم حجز دورك في ${service}. رقمك هو ${ticketCounter}`);
-            document.getElementById('studentName').value = ""; // تفريغ الخانة بعد الحجز
+        if (!name) { alert("أدخل اسمك أولاً!"); return; }
+
+        counters[type]++;
+        const ticketId = type + counters[type];
+
+        const student = {
+            name: name,
+            ticket: ticketId,
+            time: new Date()
+        };
+
+        queue.push(student);
+        updateUI();
+
+        // إظهار تذكرة الطالب
+        document.getElementById('userTicketBox').style.display = 'block';
+        document.getElementById('userTicket').innerText = ticketId;
+        document.getElementById('studentName').value = "";
+    }
+
+    function nextCustomer() {
+        if (queue.length > 0) {
+            const next = queue.shift();
+            const msg = `الرقم ${next.ticket}، يرجى التوجه للمكتب`;
+            
+            // تحديث الشاشة
+            const display = document.getElementById('currentNumber');
+            display.innerText = next.ticket;
+            display.classList.add('highlight');
+            setTimeout(() => display.classList.remove('highlight'), 500);
+
+            document.getElementById('serviceIndicator').innerText = `جاري خدمة: ${next.name}`;
+
+            // استدعاء صوتي (Text to Speech)
+            const utterance = new SpeechSynthesisUtterance(msg);
+            utterance.lang = 'ar-SA';
+            synth.speak(utterance);
+
+            updateUI();
+        } else {
+            alert("لا يوجد أحد في الطابور!");
         }
+    }
 
-        function nextCustomer() {
-            if (queue.length > 0) {
-                // إزالة الشخص الأول من القائمة (تمت خدمته)
-                const served = queue.shift();
-                
-                if (queue.length > 0) {
-                    // عرض الرقم التالي
-                    updateDisplay();
-                } else {
-                    // الطابور أصبح فارغاً
-                    currentServingIndex = -1;
-                    document.getElementById('currentNumber').innerText = "--";
-                    alert("انتهى الطابور، لا يوجد مزيد من الطلاب");
-                }
-            } else {
-                alert("الطابور فارغ حالياً");
-            }
-        }
+    function updateUI() {
+        document.getElementById('waitingCount').innerText = queue.length;
+        // حساب وقت تقريبي (مثلاً 5 دقائق لكل طالب)
+        document.getElementById('avgTime').innerText = (queue.length * 5) + " دقيقة";
+    }
+</script>
 
-        function updateDisplay() {
-            if (queue.length > 0) {
-                document.getElementById('currentNumber').innerText = queue[0].ticket;
-            }
-        }
-    </script>
 </body>
 </html>
