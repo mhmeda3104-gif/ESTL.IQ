@@ -3,79 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام الطابور الذكي - الإصدار الاحترافي</title>
+    <title>Smart Queue Pro - الهاكاثون الفائز</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
-            --glass-bg: rgba(255, 255, 255, 0.2);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --text-color: #1d1d1d;
-            --primary-btn: #4facfe;
-            --accent-gold: #f39c12;
-            --danger: #e74c3c;
+            --bg: linear-gradient(45deg, #0f2027, #203a43, #2c5364);
+            --glass: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.2);
+            --accent: #00d2ff;
+            --gold: #f1c40f;
+            --text: #ffffff;
         }
 
-        [data-theme="dark"] {
-            --bg-gradient: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-            --glass-bg: rgba(0, 0, 0, 0.5);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-color: #ffffff;
-            --primary-btn: #00f2fe;
+        [data-theme="light"] {
+            --bg: linear-gradient(45deg, #e0eafc, #cfdef3);
+            --glass: rgba(255, 255, 255, 0.6);
+            --border: rgba(0, 0, 0, 0.1);
+            --text: #2c3e50;
         }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background: var(--bg-gradient);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
             background-attachment: fixed;
-            min-height: 100vh;
+            color: var(--text);
             margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            transition: 0.5s;
+        }
+
+        /* القائمة الجانبية (التاريخ) */
+        .history-sidebar {
+            width: 280px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid var(--border);
             padding: 20px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            color: var(--text-color);
-            transition: all 0.5s ease;
+            order: 2; /* وضعها على اليمين في نظام RTL */
         }
 
-        .container { width: 100%; max-width: 650px; }
+        .history-item {
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-right: 4px solid var(--accent);
+            animation: slideIn 0.3s ease;
+        }
+
+        /* المحتوى الرئيسي */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
         .glass-card {
-            background: var(--glass-bg);
+            background: var(--glass);
             backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
             border-radius: 20px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            padding: 20px;
+            padding: 25px;
+            width: 100%;
+            max-width: 600px;
             margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
         }
 
-        .theme-switch { text-align: left; margin-bottom: 10px; }
-        .btn-toggle {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            color: var(--text-color);
-            padding: 8px 15px;
-            border-radius: 50px;
-            cursor: pointer;
+        /* تنسيق الـ QR Code */
+        #qrcode {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .current-display {
+            text-align: center;
+            border: 2px solid var(--accent);
+            position: relative;
+        }
+
+        .big-num {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(241, 196, 15, 0.5);
+            margin: 10px 0;
         }
 
         input, select {
             width: 100%;
             padding: 12px;
             margin: 10px 0;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--border);
             border-radius: 10px;
-            color: var(--text-color);
-            box-sizing: border-box;
+            color: var(--text);
         }
 
-        .btn-main {
-            width: 100%;
-            padding: 15px;
-            background: var(--primary-btn);
+        .btn-prime {
+            background: linear-gradient(to right, #00d2ff, #3a7bd5);
             border: none;
+            padding: 15px;
+            width: 100%;
             border-radius: 12px;
             color: white;
             font-weight: bold;
@@ -83,166 +122,175 @@
             transition: 0.3s;
         }
 
-        .display-screen { text-align: center; border: 2px solid var(--primary-btn); }
-        .current-number { font-size: 4rem; font-weight: 900; color: var(--accent-gold); margin: 10px 0; }
+        .btn-prime:hover { transform: scale(1.02); box-shadow: 0 0 15px var(--accent); }
 
-        /* ستايل قائمة المنتظرين */
-        .queue-table {
+        .queue-list table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
         }
 
-        .queue-table th { text-align: right; padding: 10px; border-bottom: 1px solid var(--glass-border); opacity: 0.7; }
-        .queue-table td { padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .queue-list th { border-bottom: 1px solid var(--border); padding: 10px; text-align: right; }
 
-        .action-btn {
-            padding: 5px 10px;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            font-size: 0.8rem;
-            margin-left: 5px;
+        @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+
+        .badge {
+            background: var(--accent);
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
         }
-        .btn-cancel { background: var(--danger); color: white; }
-        .btn-call-small { background: var(--accent-gold); color: white; }
-
-        .empty-msg { text-align: center; opacity: 0.6; padding: 20px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="theme-switch">
-        <button class="btn-toggle" onclick="toggleTheme()" id="themeBtn">🌙 الوضع الليلي</button>
-    </div>
-
-    <header style="text-align: center; margin-bottom: 20px;">
-        <h1>🎓 نظام "نهاية الطوابير"</h1>
-        <p>جامعة المستقبل - كلية التقنية الهندسية</p>
-    </header>
-
-    <section class="glass-card">
-        <h3 style="margin-top: 0;">🎟️ حجز دور جديد</h3>
-        <div style="display: flex; gap: 10px;">
-            <input type="text" id="nameInput" placeholder="اسم الطالب الثلاثي">
-            <select id="serviceSelect" style="width: 150px;">
-                <option value="A">شؤون (A)</option>
-                <option value="B">حسابات (B)</option>
-            </select>
+    <aside class="history-sidebar">
+        <h2 style="font-size: 1.2rem;">🕒 سجل الاستدعاء</h2>
+        <hr style="width: 100%; opacity: 0.2;">
+        <div id="historyList">
+            <p style="opacity: 0.5; font-size: 0.9rem;">لا توجد سجلات حالياً...</p>
         </div>
-        <button class="btn-main" onclick="addTicket()">تأكيد الحجز</button>
-    </section>
+        <button onclick="exportData()" style="margin-top: auto; background: none; border: 1px solid var(--border); color: var(--text); padding: 10px; border-radius: 10px; cursor: pointer;">📊 تصدير البيانات (Excel)</button>
+    </aside>
 
-    <section class="glass-card display-screen">
-        <p style="margin:0;">الرقم الحالي قيد الخدمة</p>
-        <div class="current-number" id="nowServing">--</div>
-        <div id="studentNameDisplay">بانتظار المراجعة...</div>
-    </section>
+    <main class="main-content">
+        <header style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <button onclick="toggleTheme()" class="btn-toggle" style="background: var(--glass); border: 1px solid var(--border); color: var(--text); padding: 8px 15px; border-radius: 20px; cursor: pointer;">🌓 تبديل النمط</button>
+            <h1 style="margin: 0; font-size: 1.5rem;">🎓 Smart Queue System</h1>
+        </header>
 
-    <section class="glass-card">
-        <h3>📋 قائمة المنتظرين في الطابور</h3>
-        <div id="queueListContainer">
-            <table class="queue-table">
+        <div class="glass-card">
+            <h3 style="margin-top: 0;">🎫 حجز تذكرة ذكية</h3>
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="sName" placeholder="اسم الطالب الكامل">
+                <select id="sType" style="width: 120px;">
+                    <option value="A">شؤون</option>
+                    <option value="B">حسابات</option>
+                </select>
+            </div>
+            <button class="btn-prime" onclick="createTicket()">إصدار التذكرة وQR</button>
+            
+            <div id="ticketResult" style="display: none; text-align: center; margin-top: 20px; border-top: 1px dashed var(--border); padding-top: 15px;">
+                <p>تذكرتك هي: <strong id="tNumber" style="color: var(--gold); font-size: 1.5rem;"></strong></p>
+                <div id="qrcode"></div>
+                <p style="font-size: 0.8rem; margin-top: 5px;">امسح الكود لمتابعة دورك من الكافيتريا</p>
+            </div>
+        </div>
+
+        <div class="glass-card current-display">
+            <span class="badge">مباشر الآن</span>
+            <div class="big-num" id="nowNum">--</div>
+            <div id="nowName" style="font-size: 1.2rem; opacity: 0.9;">بانتظار البدء...</div>
+            <button onclick="callNext()" style="margin-top: 20px; background: var(--gold); border: none; padding: 10px 25px; border-radius: 10px; font-weight: bold; cursor: pointer;">استدعاء التالي 🔊</button>
+        </div>
+
+        <div class="glass-card queue-list">
+            <h3>👥 المنتظرون في القائمة</h3>
+            <table>
                 <thead>
                     <tr>
                         <th>الرقم</th>
-                        <th>الاسم</th>
-                        <th>العمليات</th>
+                        <th>الطالب</th>
+                        <th>الحالة</th>
                     </tr>
                 </thead>
-                <tbody id="queueBody">
-                    </tbody>
+                <tbody id="queueBody"></tbody>
             </table>
-            <div id="emptyMsg" class="empty-msg">لا يوجد طلاب في الانتظار حالياً</div>
         </div>
-    </section>
-</div>
+    </main>
 
-<script>
-    let queue = [];
-    let counters = { A: 100, B: 200 };
-    const synth = window.speechSynthesis;
+    <script>
+        let queue = [];
+        let history = [];
+        let counters = { A: 100, B: 200 };
+        const synth = window.speechSynthesis;
 
-    function toggleTheme() {
-        const html = document.documentElement;
-        const btn = document.getElementById('themeBtn');
-        if (html.getAttribute('data-theme') === 'dark') {
-            html.removeAttribute('data-theme');
-            btn.innerText = "🌙 الوضع الليلي";
-        } else {
-            html.setAttribute('data-theme', 'dark');
-            btn.innerText = "☀️ الوضع النهاري";
+        function toggleTheme() {
+            const body = document.body;
+            body.setAttribute('data-theme', body.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
         }
-    }
 
-    function addTicket() {
-        const name = document.getElementById('nameInput').value;
-        const type = document.getElementById('serviceSelect').value;
-        if (!name.trim()) return alert("يرجى إدخال الاسم");
+        function createTicket() {
+            const name = document.getElementById('sName').value;
+            const type = document.getElementById('sType').value;
+            if (!name) return alert("يرجى كتابة الاسم");
 
-        counters[type]++;
-        const tID = type + counters[type];
-        
-        const newStudent = { id: Date.now(), name, tID };
-        queue.push(newStudent);
-
-        document.getElementById('nameInput').value = "";
-        renderQueue();
-    }
-
-    function renderQueue() {
-        const tbody = document.getElementById('queueBody');
-        const emptyMsg = document.getElementById('emptyMsg');
-        tbody.innerHTML = "";
-
-        if (queue.length === 0) {
-            emptyMsg.style.display = "block";
-        } else {
-            emptyMsg.style.display = "none";
-            queue.forEach((student, index) => {
-                const row = `
-                    <tr>
-                        <td style="font-weight: bold; color: var(--accent-gold);">${student.tID}</td>
-                        <td>${student.name}</td>
-                        <td>
-                            <button class="action-btn btn-call-small" onclick="callSpecific(${index})">استدعاء</button>
-                            <button class="action-btn btn-cancel" onclick="removeTicket(${student.id})">إلغاء</button>
-                        </td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
+            counters[type]++;
+            const ticketId = type + counters[type];
+            const student = { id: Date.now(), name, ticketId };
+            
+            queue.push(student);
+            
+            // إظهار التذكرة والـ QR
+            document.getElementById('ticketResult').style.display = 'block';
+            document.getElementById('tNumber').innerText = ticketId;
+            
+            // توليد الـ QR
+            document.getElementById('qrcode').innerHTML = "";
+            new QRCode(document.getElementById("qrcode"), {
+                text: "https://future-uni.edu/track/" + ticketId,
+                width: 100,
+                height: 100
             });
+
+            document.getElementById('sName').value = "";
+            renderAll();
         }
-    }
 
-    function removeTicket(id) {
-        if(confirm("هل تريد بالتأكيد إلغاء هذا الحجز؟")) {
-            queue = queue.filter(s => s.id !== id);
-            renderQueue();
+        function callNext() {
+            if (queue.length > 0) {
+                const current = queue.shift();
+                
+                // تحديث الشاشة
+                document.getElementById('nowNum').innerText = current.ticketId;
+                document.getElementById('nowName').innerText = "جاري خدمة: " + current.name;
+
+                // إضافة للسجل (على اليمين)
+                history.unshift({ ...current, time: new Date().toLocaleTimeString('ar-EG') });
+                if (history.length > 8) history.pop();
+
+                // صوت الاستدعاء
+                const msg = new SpeechSynthesisUtterance(`الرقم ${current.ticketId} الطالب ${current.name} توجه للمكتب`);
+                msg.lang = 'ar-SA';
+                synth.speak(msg);
+
+                renderAll();
+            } else {
+                alert("القائمة فارغة!");
+            }
         }
-    }
 
-    function callSpecific(index) {
-        const student = queue[index];
-        
-        // تحديث الشاشة الكبيرة
-        document.getElementById('nowServing').innerText = student.tID;
-        document.getElementById('studentNameDisplay').innerText = `جاري خدمة: ${student.name}`;
-        
-        // نطق الاسم والرقم
-        const speak = new SpeechSynthesisUtterance(`الرقم ${student.tID}، الطالب ${student.name}، تفضل للمكتب`);
-        speak.lang = 'ar-SA';
-        synth.speak(speak);
+        function renderAll() {
+            // رندر الجدول
+            const tbody = document.getElementById('queueBody');
+            tbody.innerHTML = queue.map(s => `
+                <tr>
+                    <td><b>${s.ticketId}</b></td>
+                    <td>${s.name}</td>
+                    <td><span style="color: #27ae60">ينتظر</span></td>
+                </tr>
+            `).join('');
 
-        // إزالته من القائمة لأنه قيد الخدمة الآن
-        queue.splice(index, 1);
-        renderQueue();
-    }
+            // رندر السجل الجانبي
+            const histDiv = document.getElementById('historyList');
+            histDiv.innerHTML = history.map(h => `
+                <div class="history-item">
+                    <div style="font-weight: bold;">${h.ticketId} - ${h.name}</div>
+                    <div style="font-size: 10px; opacity: 0.6;">تم الاستدعاء: ${h.time}</div>
+                </div>
+            `).join('');
+        }
 
-    // استدعاء أولي لتجهيز القائمة
-    renderQueue();
-</script>
-
+        function exportData() {
+            let csv = "الرقم,الاسم,الوقت\n";
+            history.forEach(h => csv += `${h.ticketId},${h.name},${h.time}\n`);
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "queue_report.csv";
+            link.click();
+        }
+    </script>
 </body>
 </html>
