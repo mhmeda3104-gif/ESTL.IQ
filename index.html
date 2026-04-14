@@ -4,23 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نظام الطابور الذكي - جامعة المستقبل</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* كود الستايل المدمج */
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #2980b9;
+            --bg-color: #f4f7f6;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        header {
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box; /* لضمان عدم خروج المدخلات عن الحواف */
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+        }
+
+        .status-card {
+            display: flex;
+            justify-content: space-around;
+            background: #e8f4fd;
+            border: 1px solid #d0e7f9;
+        }
+
+        .status-box p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .status-box h3 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin: 10px 0;
+        }
+
+        .admin-panel {
+            margin-top: 40px;
+            padding: 20px;
+            border: 2px dashed #bdc3c7;
+            border-radius: 10px;
+        }
+
+        .btn-secondary {
+            background-color: #95a5a6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 30px 0;
+        }
+    </style>
 </head>
 <body>
+
     <div class="container">
         <header>
             <h1>🎓 نظام نهاية الطوابير</h1>
-            <p>احجز دورك وأنت في مكانك</p>
+            <p>حل ذكي للازدحام في جامعة المستقبل</p>
         </header>
 
-        <section class="card shadow">
+        <section class="card">
             <h2>حجز دور جديد</h2>
-            <input type="text" id="studentName" placeholder="أدخل اسمك الثلاثي">
+            <input type="text" id="studentName" placeholder="أدخل اسمك الكامل">
             <select id="serviceType">
-                <option value="شؤون الطلبة">شؤون الطلبة</option>
-                <option value="الحسابات">الحسابات</option>
+                <option value="شؤون الطلبة">قسم شؤون الطلبة</option>
+                <option value="الحسابات">قسم الحسابات</option>
             </select>
-            <button onclick="joinQueue()" class="btn-primary">حجز رقم الآن</button>
+            <button onclick="joinQueue()" class="btn-primary">احصل على تذكرة الآن</button>
         </section>
 
         <section class="card status-card">
@@ -29,18 +142,79 @@
                 <h3 id="currentNumber">--</h3>
             </div>
             <div class="status-box">
-                <p>رقمك</p>
+                <p>رقم تذكرتك</p>
                 <h3 id="yourNumber">--</h3>
             </div>
         </section>
 
         <hr>
+
         <section class="admin-panel">
-            <h3>لوحة الموظف (للتجربة)</h3>
-            <button onclick="nextCustomer()" class="btn-secondary">استدعاء الرقم التالي</button>
+            <h3>لوحة تحكم الموظف (تجريبي)</h3>
+            <p style="font-size: 12px; color: #777;">هذا الجزء مخصص للموظف لاستدعاء الطالب التالي</p>
+            <button onclick="nextCustomer()" class="btn-secondary">استدعاء الرقم التالي 📢</button>
         </section>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // منطق البرمجة (JavaScript)
+        let queue = [];
+        let currentServingIndex = -1;
+        let ticketCounter = 100; // بداية الترقيم
+
+        function joinQueue() {
+            const name = document.getElementById('studentName').value;
+            const service = document.getElementById('serviceType').value;
+
+            if (name.trim() === "") {
+                alert("يرجى كتابة اسمك أولاً");
+                return;
+            }
+
+            ticketCounter++;
+            const newEntry = {
+                name: name,
+                ticket: ticketCounter,
+                service: service
+            };
+
+            queue.push(newEntry);
+            document.getElementById('yourNumber').innerText = ticketCounter;
+
+            // إذا كان الطابور فارغاً تماماً قبل هذا الحجز
+            if (currentServingIndex === -1) {
+                currentServingIndex = 0;
+                updateDisplay();
+            }
+
+            alert(`مرحباً ${name}، تم حجز دورك في ${service}. رقمك هو ${ticketCounter}`);
+            document.getElementById('studentName').value = ""; // تفريغ الخانة بعد الحجز
+        }
+
+        function nextCustomer() {
+            if (queue.length > 0) {
+                // إزالة الشخص الأول من القائمة (تمت خدمته)
+                const served = queue.shift();
+                
+                if (queue.length > 0) {
+                    // عرض الرقم التالي
+                    updateDisplay();
+                } else {
+                    // الطابور أصبح فارغاً
+                    currentServingIndex = -1;
+                    document.getElementById('currentNumber').innerText = "--";
+                    alert("انتهى الطابور، لا يوجد مزيد من الطلاب");
+                }
+            } else {
+                alert("الطابور فارغ حالياً");
+            }
+        }
+
+        function updateDisplay() {
+            if (queue.length > 0) {
+                document.getElementById('currentNumber').innerText = queue[0].ticket;
+            }
+        }
+    </script>
 </body>
 </html>
