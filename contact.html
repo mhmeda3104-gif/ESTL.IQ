@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تواصل معنا | LawhaKoopt®</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="logo">LawhaKoopt<span>®</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="how-it-works.html">كيف يعمل</a></li>
+      <li><a href="about.html">من نحن</a></li>
+      <li><a href="stories.html">قصص</a></li>
+      <li><a href="contact.html" style="color:var(--gold)">تواصل معنا</a></li>
+    </ul>
+    <a href="sell.html" class="btn-nav">بيع لوحتك</a>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <span class="section-label">تواصل معنا</span>
+      <h1>نحن هنا<br/>للمساعدة</h1>
+      <p class="hero-sub">لديك سؤال؟ تريد مشورة فنية؟ أو ببساطة تريد معرفة المزيد؟ نحن سعداء بالحديث معك.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="section-label">طرق التواصل</span>
+        <h2>تحدث معنا<br/>بالطريقة التي تفضلها</h2>
+        <p>سواء كان سؤالاً بسيطاً أو استفساراً تفصيلياً عن لوحتك، فريقنا جاهز للرد عليك في أقرب وقت ممكن.</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <h4>البريد الإلكتروني</h4>
+              <a href="mailto:info@lawhakoopt.com">info@lawhakoopt.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.27a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2.48h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 10.1a16 16 0 006 6l.84-.84a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 17.48z"/></svg>
+            </div>
+            <div>
+              <h4>الهاتف</h4>
+              <a href="tel:+966500000000">+966 50 000 0000</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <div>
+              <h4>واتساب</h4>
+              <a href="https://wa.me/966500000000">تحدث معنا على واتساب</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <h4>العنوان</h4>
+              <p>الرياض، المملكة العربية السعودية</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:3rem;padding:2rem;background:var(--cream);border:1px solid var(--border)">
+          <h4 style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);margin-bottom:1rem">ساعات العمل</h4>
+          <div style="display:grid;gap:0.6rem">
+            <div style="display:flex;justify-content:space-between;font-size:0.9rem"><span>الأحد – الخميس</span><strong>9:00 – 17:00</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.9rem"><span>الجمعة – السبت</span><strong style="color:var(--text-light)">مغلق</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap reveal">
+        <h3>أرسل لنا رسالة</h3>
+        <form onsubmit="handleContactForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>الاسم الأول</label>
+              <input type="text" placeholder="محمد" required />
+            </div>
+            <div class="form-group">
+              <label>الاسم الأخير</label>
+              <input type="text" placeholder="العلي" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>البريد الإلكتروني</label>
+            <input type="email" placeholder="example@email.com" required />
+          </div>
+          <div class="form-group">
+            <label>الموضوع</label>
+            <select>
+              <option value="">اختر الموضوع</option>
+              <option>استفسار عن البيع</option>
+              <option>سؤال عن التقييم</option>
+              <option>شراكة أو تعاون</option>
+              <option>أخرى</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>رسالتك</label>
+            <textarea placeholder="اكتب رسالتك هنا..." required></textarea>
+          </div>
+          <button type="submit" class="form-submit">إرسال الرسالة</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast">
+  <span class="toast-check">✓</span>
+  <strong>تم إرسال رسالتك!</strong>
+  <span>سنتواصل معك في أقرب وقت ممكن.</span>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">LawhaKoopt<span>®</span></a>
+        <p>منصة متخصصة في شراء اللوحات الفنية بشكل عادل وشفاف.</p>
+      </div>
+      <div class="footer-links">
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="index.html">الرئيسية</a></li>
+          <li><a href="sell.html">بيع لوحتك</a></li>
+          <li><a href="how-it-works.html">كيف يعمل</a></li>
+          <li><a href="about.html">من نحن</a></li>
+          <li><a href="stories.html">القصص</a></li>
+          <li><a href="contact.html">تواصل معنا</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>تواصل معنا</h4>
+        <ul>
+          <li><a href="mailto:info@lawhakoopt.com">info@lawhakoopt.com</a></li>
+          <li><a href="tel:+966500000000">+966 50 000 0000</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 LawhaKoopt® جميع الحقوق محفوظة</p>
+      <div class="footer-legal">
+        <a href="#">سياسة الخصوصية</a>
+        <a href="#">الشروط والأحكام</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+function handleContactForm(e) {
+  e.preventDefault();
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 4000);
+  e.target.reset();
+}
+</script>
+</body>
+</html>
